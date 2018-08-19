@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row">
+    <button type="button" class="btn btn-success" (click)="onDisplay()">Display My Current Plan</button>
+    <button type="button" class="btn btn-primary" (click)="onLoadPlan()" *ngIf="isAuthenticated()">Load My Previous Plan</button>
+  </div>
+
+  <br><br><br>
+
+  <!--'Save Current Plan' button appears if user clicked on 'Display My Current' Plan button-->
+  <div class="row">
+    <div class="col-xs-4">
+      <button type="button" class="btn btn-primary" *ngIf="routesDisplayed && isAuthenticated()" (click)="onSavePlan()">Save Current Plan</button>
+    </div>
+  </div>
+
+  <br>
+
+  <!--Final Routes are displayed to the user one by one-->
+  <div class="row">
+    <div class="col-md-12">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let finalRoute of finalRoutes">
+          <span>{{finalRoute.source }}</span>
+          <span *ngFor="let connector of finalRoute.connector">
+          <span *ngIf="connector !== ''"> ---> {{connector}} </span>
+        </span>
+          <span> ---> {{finalRoute.destination}}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+

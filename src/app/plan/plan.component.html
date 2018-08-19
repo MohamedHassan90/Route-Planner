@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="row" style="background:transparent
+       url('https://images.trvl-media.com/media/content/expus/graphics/promos/deals/tvly/mobile-background-flight.jpg')
+       no-repeat center center /cover">
+    <div class="col-md-12">
+      <form (ngSubmit)="onSubmitRoute()" #f="ngForm">
+        <div class="row">
+          <br>
+          <div class="col-md-5 form-group">
+            <label for="destination">Travel To</label>
+            <input type="text" id="destination" class="form-control" ngModel name="destination"
+                   required #place2="ngModel" pattern="^[A-Za-z ]+$">
+            <span class="help-block" *ngIf="!place2.valid && place2.touched">Please enter a valid place!</span>
+          </div>
+          <div class="col-md-5 form-group">
+            <label for="src">Via</label>
+            <input type="text" id="src" class="form-control" ngModel name="src" required #place="ngModel" pattern="^[A-Za-z ]+$">
+            <span class="help-block" *ngIf="!place.valid && place.touched">Please enter a valid place!</span>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-xs-12">
+            <button type="submit" class="btn btn-success" [disabled]="!f.valid">{{editMode ? 'Edit' : 'Add'}}</button>
+            <button type="button" class="btn btn-danger" *ngIf="editMode" (click)="onDelete()">Delete</button>
+            <button type="button" class="btn btn-primary" (click)="onClear()">Clear</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<hr>
+
+<!--Outputting the Plans given by the user above:-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="list-group">
+        <a class="list-group-item"
+           style="cursor: pointer"
+           *ngFor="let route of routes; let i = index"
+           (click)="onSelectItem(i)"> {{route.source}} --> {{route.destination}} is added as a Route </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR19EJz1RhGi3HR9dlaZSz-8vmOFbmqWzrM_smdbAatCJDLYSu9-->
